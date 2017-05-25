@@ -3,4 +3,10 @@
 mkdir -p /mnt/sync/folders
 mkdir -p /mnt/sync/config
 
+if [ -z "$NodeName" ]; then
+	sed -i "s/{NodeName}/${NodeName}/g" /mnt/sync/sync.conf
+else
+	sed -i 's/{NodeName}/Default/g' /mnt/sync/sync.conf
+fi
+
 exec /usr/bin/rslsync --nodaemon $*
